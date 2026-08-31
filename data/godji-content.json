@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "id": "2026-08-31",
+      "date": "2026-08-31",
+      "headline": "Headline of the Latest Godji Content",
+      "image": "assets/content/godji-2026-08-31.jpg",
+      "description": "Add a short description or summary of this content here. You can write multiple paragraphs by using \\n in the JSON description.",
+      "link": ""
+    },
+    {
+      "id": "2026-08-28",
+      "date": "2026-08-28",
+      "headline": "Previous Godji Content Headline",
+      "image": "assets/content/godji-2026-08-28.jpg",
+      "description": "Replace this sample with your archived content.",
+      "link": ""
+    }
+  ]
+}
