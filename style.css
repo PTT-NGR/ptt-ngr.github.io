@@ -29,7 +29,9 @@
   --paper:#ffffff;
   --soft:#f6f8fa;
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
   background:#fff;
@@ -37,43 +39,68 @@ body{
   font-family:Arial, Helvetica, sans-serif;
   line-height:1.65;
 }
-h1,h2,h3,h4,.brand,.nav a,.eyebrow,.archive-date,.archive-title{
+
+h1,h2,h3,h4,.brand,.nav a,.eyebrow,.archive-date,.archive-title,.content-meta{
   font-family:"PTT45Pride", Arial, sans-serif;
 }
+
 header{
   min-height:102px;
   padding:18px 42px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:30px;
   border-bottom:1px solid var(--border);
 }
+
 .logo{
   height:62px;
   width:auto;
   object-fit:contain;
+  display:block;
 }
+
+.header-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:26px;
+}
+
+.anniversary-logo{
+  height:68px;
+  width:auto;
+  max-width:170px;
+  object-fit:contain;
+  display:block;
+}
+
 .brand{
   text-align:right;
   color:var(--ptt-blue);
 }
+
 .brand h1{
   margin:0;
   font-size:34px;
   line-height:1.05;
   letter-spacing:.03em;
 }
+
 .brand p{
   margin:8px 0 0;
   font-family:Arial, Helvetica, sans-serif;
   color:#475467;
   font-size:13px;
 }
+
 .nav{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   border-bottom:1px solid var(--border);
 }
+
 .nav a{
   color:var(--ptt-blue);
   text-decoration:none;
@@ -83,17 +110,21 @@ header{
   font-size:14px;
   letter-spacing:.06em;
 }
+
 .nav a:last-child{border-right:0}
 .nav a:hover{background:#f4f6f8}
+
 .nav a.active{
   background:var(--ptt-blue);
   color:#fff;
 }
+
 main{
   max-width:1080px;
   margin:0 auto;
   padding:42px 32px 70px;
 }
+
 .eyebrow{
   color:var(--ptt-cyan);
   font-weight:700;
@@ -101,41 +132,106 @@ main{
   letter-spacing:.1em;
   text-transform:uppercase;
 }
+
 h2{
   margin:5px 0 8px;
   color:var(--ptt-blue);
   font-size:34px;
   line-height:1.2;
 }
+
 .intro{
   margin:0 0 32px;
   color:#475467;
 }
+
 .panel{
   border:1px solid var(--border);
   padding:25px;
   margin-bottom:38px;
 }
+
 .panel h3{
   color:var(--ptt-blue);
   margin:0 0 12px;
   font-size:23px;
 }
+
+.content-list{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.content-card{
+  border:1px solid var(--border);
+  display:grid;
+  grid-template-columns:minmax(260px, 38%) 1fr;
+  background:#fff;
+}
+
+.content-image,
+.content-image-placeholder{
+  width:100%;
+  height:100%;
+  min-height:260px;
+  object-fit:cover;
+  display:block;
+}
+
+.content-image-placeholder{
+  background:linear-gradient(135deg, #eef4f7, #f7f9fb);
+  color:#8a94a6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"PTT45Pride", Arial, sans-serif;
+  font-size:15px;
+  letter-spacing:.14em;
+}
+
+.content-copy{
+  padding:28px 30px;
+}
+
+.content-meta{
+  color:var(--ptt-cyan);
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.05em;
+  margin-bottom:6px;
+}
+
+.content-copy h3{
+  color:var(--ptt-blue);
+  margin:0 0 12px;
+  font-size:26px;
+  line-height:1.25;
+}
+
+.content-copy p{
+  margin:0;
+  color:#344054;
+}
+
 .archive{
   border-top:2px solid var(--ptt-blue);
   padding-top:20px;
   margin-top:42px;
 }
+
 .archive h3{
   margin:0 0 14px;
   color:var(--ptt-blue);
   font-size:25px;
 }
+
 .archive-list{
   display:flex;
   flex-direction:column;
   gap:0;
 }
+
 .archive-item{
   display:flex;
   align-items:baseline;
@@ -144,28 +240,61 @@ h2{
   border-bottom:1px solid var(--border);
   text-decoration:none;
 }
+
 .archive-date{
   flex:0 0 105px;
   color:var(--ptt-cyan);
   font-size:14px;
   font-weight:700;
 }
+
 .archive-title{
   color:#172033;
   font-size:16px;
   font-weight:700;
 }
+
 .archive-item:hover .archive-title{
   color:var(--ptt-cyan);
 }
+
+@media(max-width:900px){
+  header{padding:15px 24px}
+  .anniversary-logo{height:58px; max-width:145px}
+  .content-card{grid-template-columns:1fr}
+  .content-image,
+  .content-image-placeholder{min-height:230px}
+}
+
 @media(max-width:700px){
-  header{padding:15px 20px}
+  header{
+    padding:15px 20px;
+    align-items:flex-start;
+  }
+
   .logo{height:48px}
+
+  .header-right{
+    gap:12px;
+  }
+
+  .anniversary-logo{
+    height:42px;
+    max-width:105px;
+  }
+
   .brand h1{font-size:25px}
+  .brand p{font-size:11px; margin-top:5px}
+
   .nav{grid-template-columns:repeat(2,1fr)}
   .nav a{border-bottom:1px solid var(--border)}
+
   main{padding:30px 20px 55px}
   h2{font-size:29px}
+
+  .content-copy{padding:22px}
+  .content-copy h3{font-size:23px}
+
   .archive-item{display:block}
   .archive-date{display:block;margin-bottom:3px}
 }

@@ -5,23 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Godji Content — PTT NGR</title>
 <link rel="stylesheet" href="style.css">
+<style>
+/* ===== CONTENT + PREVIOUS CONTENT LAYOUT ===== */
+.page-grid {
+  display:grid;
+  grid-template-columns:minmax(0, 1.65fr) minmax(300px, .85fr);
+  gap:36px;
+  align-items:start;
+  margin-top:32px;
+}
+.latest-card {
+  border:1px solid #d8dce5;
+  background:#fff;
+  padding:16px;
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1.05fr);
+  gap:28px;
+  align-items:center;
+}
+.latest-image {
+  width:100%;
+  aspect-ratio:1 / 1;
+  overflow:hidden;
+  background:#eef1f5;
+}
+.latest-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.latest-copy time,
+.previous-copy time {
+  display:block;
+  color:#2f6f9f;
+  font-size:.84rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  margin-bottom:10px;
+}
+.latest-copy h3 {
+  margin:0 0 16px;
+  font-size:clamp(1.6rem, 2.5vw, 2.4rem);
+  line-height:1.12;
+}
+.latest-copy p {
+  margin:0 0 20px;
+  line-height:1.7;
+}
+.read-more {
+  display:inline-block;
+  padding:12px 20px;
+  border:1px solid #30386b;
+  color:#30386b;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.06em;
+  font-size:.8rem;
+}
+.read-more:hover {
+  background:#30386b;
+  color:#fff;
+}
+.previous-sidebar {
+  border:1px solid #d8dce5;
+  background:#fff;
+  padding:22px;
+}
+.previous-sidebar h3 {
+  margin:0 0 12px;
+  padding-bottom:10px;
+  border-bottom:1px solid #30386b;
+  font-size:1.1rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.previous-list {
+  display:flex;
+  flex-direction:column;
+}
+.previous-item {
+  display:grid;
+  grid-template-columns:110px minmax(0,1fr) auto;
+  gap:14px;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid #e3e6ec;
+  text-decoration:none;
+  color:inherit;
+}
+.previous-item:first-child { padding-top:10px; }
+.previous-item img {
+  width:110px;
+  aspect-ratio:1 / 1;
+  object-fit:cover;
+  display:block;
+  background:#eef1f5;
+}
+.previous-copy span {
+  display:block;
+  font-size:.96rem;
+  line-height:1.42;
+  font-weight:600;
+}
+.previous-item b {
+  font-size:1.8rem;
+  line-height:1;
+  font-weight:400;
+  color:#6f7484;
+}
+.previous-item:hover .previous-copy span { color:#2f6f9f; }
+.view-archive {
+  display:inline-block;
+  margin-top:18px;
+  padding:11px 16px;
+  border:1px solid #30386b;
+  color:#30386b;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.05em;
+  font-size:.78rem;
+}
+.view-archive:hover { background:#30386b; color:#fff; }
+@media (max-width:900px) {
+  .page-grid { grid-template-columns:1fr; }
+}
+@media (max-width:620px) {
+  .latest-card { grid-template-columns:1fr; gap:20px; }
+  .previous-item { grid-template-columns:88px minmax(0,1fr) auto; }
+  .previous-item img { width:88px; }
+}
+</style>
 </head>
 <body>
 <header>
   <a href="index.html" aria-label="PTT NGR Main">
     <img class="logo" src="assets/PTT NGR color_0.png" alt="PTT NGR logo">
   </a>
-  <div class="brand">
-    <h1>PTT NGR</h1>
-    <p>Knowledge &amp; Information Portal</p>
+
+  <div class="header-right">
+    <img class="anniversary-logo" src="assets/PTT_40_years.png" alt="PTT 40 years NGR Natural Gas Retail">
+    <div class="brand">
+      <h1>PTT NGR</h1>
+      <p>Knowledge &amp; Information Portal</p>
+    </div>
   </div>
 </header>
 
 <nav class="nav" aria-label="Main navigation">
-  <a href="index.html" >MAIN</a>
-  <a href="global-energy-prices.html" >GLOBAL ENERGY PRICES</a>
+  <a href="index.html">MAIN</a>
+  <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
   <a href="godji-content.html" class="active">GODJI CONTENT</a>
-  <a href="other-news.html" >OTHER NEWS</a>
+  <a href="other-news.html">OTHER NEWS</a>
 </nav>
 
 <main>
@@ -29,25 +164,80 @@
   <h2>Godji Content</h2>
   <p class="intro">A dedicated page for Godji content and information.</p>
 
-  
-<section class="panel">
-  <h3>Godji Content</h3>
-  <p>Godji-related content, announcements, articles, and other selected information go here.</p>
-</section>
+  <div class="page-grid">
+    <section class="latest-content" aria-label="Latest content">
+      <!--
+      HOW TO ADD / REPLACE THE LATEST CONTENT
+      1. Upload a SQUARE image to assets/content/ (recommended 1000 x 1000 px or larger).
+      2. Replace the src below with your uploaded image path.
+      3. Replace the date, headline and description.
+      4. Replace # in Read More with the link to the full content if you have one.
+      -->
+      <article class="latest-card">
+        <div class="latest-image">
+          <img src="assets/content/latest-square.jpg" alt="Latest content image">
+        </div>
 
+        <div class="latest-copy">
+          <time datetime="2026-08-31">2026-08-31</time>
+          <h3>Headline of the Latest Content</h3>
+          <p>
+            Add a short description or summary of this content here. The image on the left is displayed
+            as a square and will automatically crop to fit while keeping the layout consistent.
+          </p>
+          <a class="read-more" href="#">READ MORE →</a>
+        </div>
+      </article>
+    </section>
 
-  <section class='archive'><h3>Previous Content</h3><div class='archive-list'><a class="archive-item" href="#">
-  <span class="archive-date">2026-05-06</span>
-  <span class="archive-title">Replace with archived headline</span>
-</a>
-<a class="archive-item" href="#">
-  <span class="archive-date">2026-05-05</span>
-  <span class="archive-title">Replace with archived headline</span>
-</a>
-<a class="archive-item" href="#">
-  <span class="archive-date">2026-05-04</span>
-  <span class="archive-title">Replace with archived headline</span>
-</a></div></section>
+    <!-- PREVIOUS CONTENT: SIDEBAR ONLY -->
+    <aside class="previous-sidebar" aria-label="Previous Content">
+      <h3>Previous Content</h3>
+      <div class="previous-list">
+        <a class="previous-item" href="#">
+          <img src="assets/content/godji-archive-01.jpg" alt="Replace with archived Godji headline">
+          <div class="previous-copy">
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span>Replace with archived Godji headline</span>
+          </div>
+          <b aria-hidden="true">›</b>
+        </a>
+        <a class="previous-item" href="#">
+          <img src="assets/content/godji-archive-02.jpg" alt="Replace with archived Godji headline">
+          <div class="previous-copy">
+            <time datetime="2026-08-26">2026-08-26</time>
+            <span>Replace with archived Godji headline</span>
+          </div>
+          <b aria-hidden="true">›</b>
+        </a>
+        <a class="previous-item" href="#">
+          <img src="assets/content/godji-archive-03.jpg" alt="Replace with archived Godji headline">
+          <div class="previous-copy">
+            <time datetime="2026-08-24">2026-08-24</time>
+            <span>Replace with archived Godji headline</span>
+          </div>
+          <b aria-hidden="true">›</b>
+        </a>
+        <a class="previous-item" href="#">
+          <img src="assets/content/godji-archive-04.jpg" alt="Replace with archived Godji headline">
+          <div class="previous-copy">
+            <time datetime="2026-08-21">2026-08-21</time>
+            <span>Replace with archived Godji headline</span>
+          </div>
+          <b aria-hidden="true">›</b>
+        </a>
+        <a class="previous-item" href="#">
+          <img src="assets/content/godji-archive-05.jpg" alt="Replace with archived Godji headline">
+          <div class="previous-copy">
+            <time datetime="2026-08-19">2026-08-19</time>
+            <span>Replace with archived Godji headline</span>
+          </div>
+          <b aria-hidden="true">›</b>
+        </a>
+      </div>
+      <a class="view-archive" href="#">VIEW ALL ARCHIVE</a>
+    </aside>
+  </div>
 </main>
 </body>
 </html>
