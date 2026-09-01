@@ -5,16 +5,20 @@
       "date": "2026-08-31",
       "headline": "Headline of the Latest Global Energy Prices Content",
       "image": "assets/content/global-energy-2026-08-31.jpg",
-      "description": "Add a short description or summary of this content here. You can write multiple paragraphs by using \\n in the JSON description.",
-      "link": ""
+      "link": "",
+      "paragraphs": [
+        "Add a short description or summary of this content here. You can write multiple paragraphs by using \\n in the JSON description."
+      ]
     },
     {
       "id": "2026-08-28",
       "date": "2026-08-28",
       "headline": "Previous Global Energy Prices Headline",
       "image": "assets/content/global-energy-2026-08-28.jpg",
-      "description": "Replace this sample with your archived content.",
-      "link": ""
+      "link": "",
+      "paragraphs": [
+        "Replace this sample with your archived content."
+      ]
     }
   ]
 }
