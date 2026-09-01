@@ -231,10 +231,23 @@
       text-decoration: underline;
     }
 
-    /* About map: small and aligned to the bottom-right inside the About card */
+
+    /* About Our Business: text and map inside the same white card */
+    .about-card-with-map {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .about-text {
+      min-width: 0;
+    }
+
     .about-map {
-      width: min(300px, 32%);
-      margin: 24px 0 0 auto;
+      width: 100%;
+      align-self: end;
+      justify-self: end;
       border: 1px solid var(--line);
       background: var(--white);
       padding: 8px;
@@ -247,59 +260,6 @@
       object-fit: contain;
     }
 
-    /* Value chain */
-    .process-stack {
-      display: grid;
-      gap: 28px;
-    }
-
-    .process-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      padding: 20px;
-      overflow: hidden;
-    }
-
-    .process-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
-
-    /* Map */
-    .map-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      padding: 16px;
-    }
-
-    .map-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
-
-    .image-note {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-    }
-
-    /* Footer */
-    footer {
-      padding: 30px 24px;
-      background: var(--navy-dark);
-      color: rgba(255,255,255,.8);
-      text-align: center;
-      font-size: 14px;
-    }
-
-    /* =========================
-       TABLET
-    ========================= */
     @media (max-width: 900px) {
       .top-header {
         min-height: auto;
@@ -466,6 +426,26 @@
         font-size: 15px;
       }
     }
+  
+    @media (max-width: 900px) {
+      .about-card-with-map {
+        grid-template-columns: minmax(0, 1fr) 240px;
+        gap: 22px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .about-card-with-map {
+        grid-template-columns: 1fr;
+      }
+
+      .about-map {
+        width: min(100%, 280px);
+        justify-self: center;
+        margin-top: 8px;
+      }
+    }
+
   </style>
 </head>
 
@@ -520,8 +500,9 @@
         <h2>ABOUT OUR BUSINESS</h2>
       </div>
 
-      <div class="about-card">
-        <p>
+      <div class="about-card about-card-with-map">
+        <div class="about-text">
+<p>
           PTT Natural Gas Retail (PTT NGR) เป็นหนึ่งในหน่วยงานของธุรกิจก๊าซธรรมชาติ บริษัท ปตท. จำกัด(มหาชน) ซึ่งเป็นผู้ประกอบกิจการจัดจำหน่ายก๊าซธรรมชาติแบบครบวงจร สำหรับลูกค้ากลุ่มอุตสาหกรรมและผลิตไฟฟ้าใช้เอง โดยเริ่มดำเนินการจัดจำหน่ายก๊าซธรรมชาติผ่านระบบท่อจัดจำหน่ายก๊าซธรรมชาติตั้งแต่ปี 2529 ซึ่งก๊าซธรรมชาติส่วนหนึ่งถูกนำไปใช้เป็นเชื้อเพลิง ในกระบวนการผลิตทางอุตสาหกรรมต่าง ๆ เช่น เซรามิค สุขภัณฑ์ แก้ว/กระจก โลหะ ปิโตรเคมีภัณฑ์ รวมถึงการผลิตไฟฟ้าใช้เอง เป็นต้น ด้วยคุณสมบัติที่เป็นเชื้อเพลิงที่เป็นมิตรต่อสิ่งแวดล้อมมากที่สุด และมีประสิทธิภาพในการให้ความร้อนสูง ทำให้ความต้องการใช้ก๊าซธรรมชาติสำหรับภาคอุตสาหกรรมขยายตัวสูงขึ้นอย่างต่อเนื่อง
         </p>
         <p>
@@ -536,10 +517,11 @@
 
         <p class="more-info">
           <a href="https://pttngr.pttplc.com/About/AboutUs?ID=about0" target="_blank" rel="noopener">
-            ข้อมูลเพิ่มเติม
+            >> ข้อมูลเพิ่มเติม <<
           </a>
         </p>
       </div>
+        </div>
 
         <div class="about-map">
           <img
@@ -605,7 +587,7 @@
 
       <p class="more-info">
         <a href="https://pttngr.pttplc.com/Product/ProductInfo?ID=NG" target="_blank" rel="noopener">
-          สำหรับบริการอื่น ๆ และข้อมูลเพิ่มเติม
+          >> สำหรับบริการอื่น ๆ และข้อมูลเพิ่มเติม <<
         </a>
       </p>
 
