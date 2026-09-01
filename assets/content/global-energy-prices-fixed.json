@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "id": "2026-08-31",
+      "date": "2026-08-31",
+      "headline": "ราคาพลังงานโลก วันที่ 31 ส.ค. 2569",
+      "image": "assets/content/Energy-31-08-26.jpg",
+      "link": "",
+      "paragraphs": [
+        "Add a short description or summary of this content here.",
+        "You can write multiple paragraphs by adding each paragraph as a separate item in the paragraphs array."
+      ]
+    },
+    {
+      "id": "2026-08-28",
+      "date": "2026-08-28",
+      "headline": "ราคาพลังงานโลก วันที่ 28 ส.ค. 2569",
+      "image": "assets/content/Energy-28-08-26.jpg",
+      "link": "",
+      "paragraphs": [
+        "Replace this sample with your archived content."
+      ]
+    }
+  ]
+}
