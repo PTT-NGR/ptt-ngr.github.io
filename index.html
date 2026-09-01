@@ -232,12 +232,12 @@
     }
 
 
-    /* About the Business: text and map inside the same white card */
+    /* About our Business: text and map inside the same white card */
     .about-card-with-map {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 200px;
       gap: 32px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .about-text {
@@ -248,6 +248,7 @@
       width: 200px;
       align-self: end;
       justify-self: end;
+      margin-top: auto;
       border: 1px solid var(--line);
       background: var(--white);
       padding: 8px;
@@ -492,12 +493,12 @@
 
 
     <!-- =====================
-         ABOUT THE BUSINESS
+         ABOUT OUR BUSINESS
     ====================== -->
     <section class="content-section" id="about">
 
       <div class="section-heading">
-        <h2>ABOUT THE BUSINESS</h2>
+        <h2>ABOUT OUR BUSINESS</h2>
       </div>
 
       <div class="about-card about-card-with-map">
@@ -517,19 +518,18 @@
 
         <p class="more-info">
           <a href="https://pttngr.pttplc.com/About/AboutUs?ID=about0" target="_blank" rel="noopener">
-            ข้อมูลเพิ่มเติม
+            >> ข้อมูลเพิ่มเติม <<
           </a>
         </p>
       </div>
-        </div>
 
-        <div class="about-map">
-          <img
-            src="assets/main/ngr-network-map.jpg"
-            alt="PTT NGR natural gas network map"
-          >
-        </div>
+      <div class="about-map">
+        <img
+          src="assets/main/ngr-network-map.jpg"
+          alt="PTT NGR natural gas network map"
+        >
       </div>
+    </div>
 
     </section>
 
@@ -587,7 +587,7 @@
 
       <p class="more-info">
         <a href="https://pttngr.pttplc.com/Product/ProductInfo?ID=NG" target="_blank" rel="noopener">
-          สำหรับบริการอื่น ๆ และข้อมูลเพิ่มเติม
+          >> สำหรับบริการอื่น ๆ และข้อมูลเพิ่มเติม <<
         </a>
       </p>
 
