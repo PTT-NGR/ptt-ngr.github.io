@@ -13,7 +13,8 @@
 .latest-image img { width:100%; height:100%; object-fit:cover; display:block; }
 .latest-copy time,.previous-copy time { display:block; color:#2f6f9f; font-size:.84rem; font-weight:700; letter-spacing:.04em; margin-bottom:10px; }
 .latest-copy h3 { margin:0 0 16px; font-size:clamp(1.6rem,2.5vw,2.4rem); line-height:1.12; }
-.latest-copy p { margin:0 0 20px; line-height:1.7; white-space:pre-line; }
+.content-paragraphs p { margin:0 0 18px; line-height:1.75; }
+.content-paragraphs p:last-child { margin-bottom:20px; }
 .read-more { display:inline-block; padding:12px 20px; border:1px solid #30386b; color:#30386b; text-decoration:none; font-weight:700; letter-spacing:.06em; font-size:.8rem; }
 .read-more:hover { background:#30386b; color:#fff; }
 .previous-sidebar { border:1px solid #d8dce5; background:#fff; padding:22px; }
@@ -71,7 +72,7 @@
   </div>
 </main>
 <script>
-const DATA_FILE = "data/godji-content.json";
+const DATA_FILE = "assets/content/godji-content.json";
 let allItems = [];
 
 function safeText(value) { return value == null ? "" : String(value); }
@@ -90,12 +91,27 @@ function renderLatest(item) {
       <div class="latest-copy">
         <time datetime="${safeText(item.date)}">${safeText(item.date)}</time>
         <h3></h3>
-        <p></p>
+        <div class="content-paragraphs"></div>
         <a class="read-more">READ MORE →</a>
       </div>
     </article>`;
+
   container.querySelector('h3').textContent = safeText(item.headline);
-  container.querySelector('p').textContent = safeText(item.description);
+
+  const paragraphsContainer = container.querySelector('.content-paragraphs');
+  const paragraphs = Array.isArray(item.paragraphs)
+    ? item.paragraphs
+    : safeText(item.description).split(/\n\s*\n/);
+
+  paragraphs
+    .map(p => safeText(p).trim())
+    .filter(Boolean)
+    .forEach(paragraph => {
+      const p = document.createElement('p');
+      p.textContent = paragraph;
+      paragraphsContainer.appendChild(p);
+    });
+
   const button = container.querySelector('.read-more');
   if (item.link && item.link.trim()) {
     button.href = item.link;
