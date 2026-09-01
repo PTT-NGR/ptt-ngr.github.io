@@ -231,6 +231,22 @@
       text-decoration: underline;
     }
 
+    /* About map: small and aligned to the bottom-right inside the About card */
+    .about-map {
+      width: min(300px, 32%);
+      margin: 24px 0 0 auto;
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 8px;
+    }
+
+    .about-map img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
     /* Value chain */
     .process-stack {
       display: grid;
@@ -318,6 +334,10 @@
       .process-card,
       .map-card {
         padding: 12px;
+      }
+
+      .about-map {
+        width: min(260px, 40%);
       }
     }
 
@@ -422,6 +442,12 @@
         line-height: 1.65;
       }
 
+      .about-map {
+        width: min(100%, 280px);
+        margin: 20px auto 0;
+        padding: 6px;
+      }
+
       .process-stack {
         gap: 18px;
       }
@@ -486,12 +512,12 @@
 
 
     <!-- =====================
-         ABOUT THE BUSINESS
+         ABOUT OUR BUSINESS
     ====================== -->
     <section class="content-section" id="about">
 
       <div class="section-heading">
-        <h2>ABOUT THE BUSINESS</h2>
+        <h2>ABOUT OUR BUSINESS</h2>
       </div>
 
       <div class="about-card">
@@ -515,14 +541,12 @@
         </p>
       </div>
 
-      <div class="process-stack">
-
-        <!-- PROCESS IMAGE 1 -->
-        <div class="process-card">
+        <div class="about-map">
           <img
-          src="assets/main/ngr-network-map.jpg"
-          alt="PTT NGR natural gas network map"
-        >
+            src="assets/main/ngr-network-map.jpg"
+            alt="PTT NGR natural gas network map"
+          >
+        </div>
       </div>
 
     </section>
