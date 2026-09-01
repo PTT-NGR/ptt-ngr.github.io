@@ -1,50 +1,555 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PTT NGR — PTT NGR</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PTT NGR | Main</title>
+
+  <style>
+    @font-face {
+      font-family: "PTT45";
+      src: url("assets/PTT45Pride-Regular.otf") format("opentype");
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: "PTT45";
+      src: url("assets/PTT45Pride-Bold.otf") format("opentype");
+      font-weight: 700;
+    }
+
+    :root {
+      --navy: #2f3567;
+      --navy-dark: #292c5a;
+      --blue: #3785a8;
+      --line: #d7dbe2;
+      --text: #263445;
+      --muted: #667486;
+      --page: #f7f8fa;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: "PTT45", Arial, sans-serif;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .top-header {
+      min-height: 145px;
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand-left img {
+      width: 175px;
+      max-width: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .brand-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-left: auto;
+    }
+
+    .brand-anniversary {
+      width: 165px;
+      max-height: 95px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .portal-title {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .portal-title strong {
+      display: block;
+      color: var(--navy);
+      font-size: clamp(30px, 3vw, 50px);
+      line-height: 1;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .portal-title span {
+      display: block;
+      margin-top: 10px;
+      color: #3c4858;
+      font-size: 18px;
+    }
+
+    /* =========================
+       NAV
+    ========================= */
+    .main-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+    }
+
+    .main-nav a {
+      min-height: 68px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--line);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-align: center;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .main-nav a:last-child {
+      border-right: 0;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background: #3a3975;
+      color: white;
+    }
+
+    /* =========================
+       PAGE
+    ========================= */
+    .page {
+      width: min(1280px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 54px 0 90px;
+    }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--blue);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .page-intro {
+      max-width: 900px;
+      margin: 14px 0 0;
+      color: #435264;
+      font-size: 21px;
+      line-height: 1.55;
+    }
+
+    /* =========================
+       CONTENT SECTIONS
+    ========================= */
+    .content-section {
+      margin-top: 54px;
+    }
+
+    .section-heading {
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.15;
+    }
+
+    .section-heading p {
+      max-width: 950px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* About */
+    .about-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 34px 38px;
+    }
+
+    .about-card p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.75;
+      color: #394757;
+    }
+
+    .about-card p + p {
+      margin-top: 18px;
+    }
+
+    /* Value chain */
+    .process-stack {
+      display: grid;
+      gap: 28px;
+    }
+
+    .process-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .process-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* Map */
+    .map-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 16px;
+    }
+
+    .map-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .image-note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 24px;
+      background: var(--navy-dark);
+      color: rgba(255,255,255,.8);
+      text-align: center;
+      font-size: 15px;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+    @media (max-width: 900px) {
+      .top-header {
+        min-height: auto;
+        padding: 20px 24px;
+      }
+
+      .brand-left img {
+        width: 145px;
+      }
+
+      .brand-anniversary {
+        width: 120px;
+      }
+
+      .portal-title span {
+        font-size: 15px;
+      }
+
+      .page {
+        width: min(100% - 36px, 1280px);
+        padding-top: 42px;
+      }
+
+      .about-card {
+        padding: 28px;
+      }
+
+      .about-card p {
+        font-size: 18px;
+      }
+
+      .process-card,
+      .map-card {
+        padding: 12px;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+    @media (max-width: 640px) {
+      .top-header {
+        padding: 16px;
+        gap: 14px;
+      }
+
+      .brand-left img {
+        width: 100px;
+      }
+
+      .brand-right {
+        gap: 10px;
+      }
+
+      .brand-anniversary {
+        width: 70px;
+      }
+
+      .portal-title strong {
+        font-size: 22px;
+        letter-spacing: 0.05em;
+      }
+
+      .portal-title span {
+        margin-top: 5px;
+        font-size: 10px;
+      }
+
+      .main-nav {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .main-nav a {
+        min-height: 52px;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+        letter-spacing: 0.03em;
+      }
+
+      .main-nav a:nth-child(2) {
+        border-right: 0;
+      }
+
+      .main-nav a:nth-child(3) {
+        border-bottom: 0;
+      }
+
+      .main-nav a:nth-child(4) {
+        border-right: 0;
+        border-bottom: 0;
+      }
+
+      .page {
+        width: calc(100% - 28px);
+        padding: 34px 0 60px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+      }
+
+      .page-title {
+        font-size: 32px;
+      }
+
+      .page-intro {
+        margin-top: 10px;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .content-section {
+        margin-top: 38px;
+      }
+
+      .section-heading {
+        margin-bottom: 16px;
+      }
+
+      .section-heading h2 {
+        font-size: 26px;
+      }
+
+      .section-heading p {
+        margin-top: 7px;
+        font-size: 15px;
+      }
+
+      .about-card {
+        padding: 22px 18px;
+      }
+
+      .about-card p {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .process-stack {
+        gap: 18px;
+      }
+
+      .process-card,
+      .map-card {
+        padding: 6px;
+      }
+
+      .image-note {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <a href="index.html" aria-label="PTT NGR Main">
-    <img class="logo" src="assets/PTT NGR color_0.png" alt="PTT NGR logo">
-  </a>
 
-  <div class="header-right">
-    <img class="anniversary-logo" src="assets/PTT_40_years.png" alt="PTT 40 years NGR Natural Gas Retail">
-    <div class="brand">
-      <h1>PTT NGR</h1>
-      <p>Knowledge &amp; Information Portal</p>
+  <header class="site-header">
+    <div class="top-header">
+
+      <!-- LEFT LOGO -->
+      <div class="brand-left">
+        <img src="assets/PTT_NGR_color_0.png" alt="PTT NGR">
+      </div>
+
+      <!-- RIGHT LOGOS + PORTAL NAME -->
+      <div class="brand-right">
+        <img class="brand-anniversary" src="assets/PTT_40_years.png" alt="PTT NGR 40 Years">
+
+        <div class="portal-title">
+          <strong>PTT NGR</strong>
+          <span>Knowledge &amp; Information Portal</span>
+        </div>
+      </div>
+
     </div>
-  </div>
-</header>
 
-<nav class="nav" aria-label="Main navigation">
-  <a href="index.html" class="active">MAIN</a>
-  <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
-  <a href="godji-content.html">GODJI CONTENT</a>
-  <a href="other-news.html">OTHER NEWS</a>
-</nav>
-
-<main>
-  <div class="eyebrow">WELCOME</div>
-  <h2>PTT NGR</h2>
-  <p class="intro">This is the central information page for PTT NGR. Use the sections above to keep key information organized and easy to access.</p>
-
-  
-<section class="panel">
-  <h3>About the Business</h3>
-  <p>Add a short description of PTT NGR's business, key activities, customers, markets, and role in the natural gas value chain here.</p>
-</section>
-<section class="panel">
-  <h3>Our History</h3>
-  <p>Add a short timeline or history of PTT NGR here — establishment, major milestones, business expansion, and current direction.</p>
-</section>
+    <nav class="main-nav">
+      <a class="active" href="index.html">MAIN</a>
+      <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
+      <a href="godji-content.html">GODJI CONTENT</a>
+      <a href="other-news.html">OTHER NEWS</a>
+    </nav>
+  </header>
 
 
-  
-</main>
+  <main class="page">
+
+    <p class="eyebrow">WELCOME</p>
+    <h1 class="page-title">PTT NGR</h1>
+    <p class="page-intro">
+      Knowledge and information portal for PTT Natural Gas Retail,
+      bringing together key business information, natural gas infrastructure,
+      market knowledge and useful updates in one place.
+    </p>
+
+
+    <!-- =====================
+         ABOUT THE BUSINESS
+    ====================== -->
+    <section class="content-section" id="about">
+
+      <div class="section-heading">
+        <h2>About the Business</h2>
+      </div>
+
+      <div class="about-card">
+        <p>
+          PTT Natural Gas Retail (PTT NGR) เป็นหนึ่งในหน่วยงานของธุรกิจก๊าซธรรมชาติ บริษัท ปตท. จำกัด(มหาชน) ซึ่งเป็นผู้ประกอบกิจการจัดจำหน่ายก๊าซธรรมชาติแบบครบวงจร สำหรับลูกค้ากลุ่มอุตสาหกรรมและผลิตไฟฟ้าใช้เอง โดยเริ่มดำเนินการจัดจำหน่ายก๊าซธรรมชาติผ่านระบบท่อจัดจำหน่ายก๊าซธรรมชาติตั้งแต่ปี 2529 ซึ่งก๊าซธรรมชาติส่วนหนึ่งถูกนำไปใช้เป็นเชื้อเพลิง ในกระบวนการผลิตทางอุตสาหกรรมต่าง ๆ เช่น เซรามิค สุขภัณฑ์ แก้ว/กระจก โลหะ ปิโตรเคมีภัณฑ์ รวมถึงการผลิตไฟฟ้าใช้เอง เป็นต้น ด้วยคุณสมบัติที่เป็นเชื้อเพลิงที่เป็นมิตรต่อสิ่งแวดล้อมมากที่สุด และมีประสิทธิภาพในการให้ความร้อนสูง ทำให้ความต้องการใช้ก๊าซธรรมชาติสำหรับภาคอุตสาหกรรมขยายตัวสูงขึ้นอย่างต่อเนื่อง
+        </p>
+        <p>
+ปัจจุบันมีการดำเนินการในธุรกิจก๊าซธรรมชาติครอบคลุมพื้นที่มากกว่า 500 ตารางกิโลเมตร ผ่านท่อส่งก๊าซธรรมชาติที่มีคุณภาพภายใต้มาตรฐานความปลอดภัย อย่างเข้มงวดความยาวมากกว่า 400 กิโลเมตร ให้บริการแก่ลูกค้าภาคอุตสาหกรรมมากกว่า 360 ราย ครอบคลุมนิคมอุตสาหกรรมขนาดใหญ่มากกว่า 21 แห่ง
+	</p>
+	<p>
+นอกจากนี้ NGR พัฒนาวิธีการขนส่งก๊าซธรรมชาติ เพื่อตอบสนองความต้องการสำหรับลูกค้าที่อยู่นอกเหนือระบบท่อจัดจำหน่ายก๊าซธรรมชาติด้วยเทคโนโลยี Liquefied Natural Gas (LNG) และCompressed Natural Gas (CNG) ให้บริการแก่ลูกค้าภาคอุตสาหกรรม ทำให้สามารถขนส่งก๊าซธรรมชาติในรูปแบบอื่น ช่วยให้สามารถเข้าถึงกลุ่มลูกค้าได้หลายหลายมากยิ่งขึ้น
+	</p>
+	<p>
+รวมทั้ง PTT NGR มีบริการ Energy Solutions Provider ซึ่งเป็นบริการด้านการจัดการพลังงานและให้คำปรึกษาด้านวิศวกรรมอย่างครบวงจร ตั้งแต่เริ่มกระบวนการออกแบบการก่อสร้างระบบให้ได้มาตรฐาน มีประสิทธิภาพ และประหยัดค่าใช้จ่ายการทดสอบระบบ ดูแล และการซ่อมบำรุง รักษาอุปกรณ์ให้มีความปลอดภัย บริการอบรมและพัฒนาบุคลากรด้านพลังงาน ความปลอดภัย และระบบที่เกี่ยวข้องกับการใช้ก๊าซธรรมชาติ โดยทีมวิศวกรที่มีประสบการณ์กว่า 35 ปี และมีความเชี่ยวชาญในการดูแลลูกค้าหลากหลายประเภทอุตสาหกรรม สามารถลงพื้นที่ตรวจสอบ และดูแลแก้ไขปัญหาให้กับลูกค้าได้อย่างถูกต้องและปลอดภัยตามมาตรฐานสากล
+        </p>
+      </div>
+
+   <div class="map-card">
+        <img
+          src="assets/main/ngr-network-map.png"
+          alt="PTT NGR natural gas network map"
+        >
+      </div>
+
+    </section>
+
+
+    <!-- =====================
+         OUR PRODUCTS & SERVICES
+    ====================== -->
+    <section class="content-section" id="value-chain">
+
+      <div class="section-heading">
+        <h2>Natural Gas</h2>
+        <p>
+          PTT NGR ให้บริการจำหน่ายพลังงานประเภทก๊าซธรรมชาติพร้อมขนส่งไปยังลูกค้ากลุ่มอุตสาหกรรม และลูกค้าผู้ผลิตไฟฟ้าใช้เองผ่านทางระบบท่อจัดจำหน่ายก๊าซธรรมชาติของ ปตท. (Pipeline) ที่มีโครงข่ายครอบคลุมทั่วประเทศไทย พร้อมกับให้คำปรึกษาและแนะนำรูปแบบการรับก๊าซธรรมชาติผ่านระบบท่อจัดจำหน่ายก๊าซธรรมชาติของ ปตท. เข้าสู่โรงงานของลูกค้า โดยผ่านสถานีวัดซื้อขายและควบคุมความดันก๊าซธรรมชาติ (MR Station) ซึ่ง ปตท. มีทีมวิศวกรผู้เชี่ยวชาญในการออกแบบให้มีความเหมาะสมกับที่ตั้งโรงงานและการใช้งานของลูกค้า
+        </p>
+	<p>
+กรณีที่พื้นที่ตั้งโรงงงานของลูกค้าอยู่ห่างไกล จากระบบท่อจัดจำหน่ายก๊าซธรรมชาติของ ปตท. PTT NGR มีบริการขนส่งก๊าซธรรมชาติทางรถ (Off-pipe) ผ่านการให้บริการ 2 รูปแบบ คือ LNG (Liquefied natural gas) และ CNG (Compressed natural gas) ทีมผู้เชี่ยวชาญของ ปตท. พร้อมให้คำแนะนำถึงรูปแบบการให้บริการที่เหมาะสมกับลูกค้าแต่ละราย รวมถึงการให้บริการออกแบบและก่อสร้างระบบรับก๊าซธรรมชาติของลูกค้า และบริการหลังการขาย ด้วยมาตรฐานระดับสากล ซึ่งลูกค้ามั่นใจได้ว่าจะได้รับการบริการในการให้คำแนะนำและการดูแลบำรุงรักษาระบบก๊าซธรรมชาติภายในสถานประกอบการอย่างถูกต้อง เหมาะสม และสามารถใช้ก๊าซฯได้ปลอดภัยและมีประสิทธิภาพ
+        </p>
+      </div>
+
+      <div class="process-stack">
+
+        <!-- PROCESS IMAGE 2 -->
+        <div class="process-card">
+          <img
+            src="assets/main/ngr-value-chain-1.png"
+            alt="Natural gas transmission, distribution and metering process"
+          >
+        </div>
+
+      <div class="section-heading">
+        <h2>Natural Gas</h2>
+        <p>
+          บริการจำหน่ายก๊าซธรรมชาติเหลว (Liquefied Natural Gas: LNG)  พร้อมกับการให้บริการเพื่ออำนวยความสะดวกในการรับ LNG ไปใช้งานในสถานประกอบการอย่างครบวงจร ประกอบด้วย บริการขนส่ง LNG จาก LNG Terminal ไปยังสถานประกอบการของลูกค้า บริการแปลงสภาพ LNG ให้เป็นก๊าซธรรมชาติที่อยู่ในสถานะก๊าซฯ และดำเนินการให้ก๊าซฯ มีสภาพพร้อมใช้งาน พร้อมทั้งบริการให้คำปรึกษาและแนะนำรูปแบบการรับ LNG ที่เหมาะสมกับพื้นที่และที่ตั้งของสถานประกอบการรวมถึงการใช้งานของลูกค้า
+        </p>
+      </div>
+
+      <div class="process-stack">
+
+        <!-- PROCESS IMAGE 3 -->
+        <div class="process-card">
+          <img
+            src="assets/main/ngr-value-chain-2.png"
+            alt="LNG terminal, LNG transportation and LNG station process"
+          >
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © PTT Natural Gas Retail. All rights reserved.
+  </footer>
+
 </body>
 </html>
