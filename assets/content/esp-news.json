@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "id": "2026-09-09",
+      "date": "2026-09-09",
+      "headline": "ใส่ Headline ของ ESP News ที่นี่",
+      "image": "assets/content/ESP-News-09-09-26.jpg",
+      "description": "ใส่คำบรรยายหรือเนื้อหาของข่าว ESP ตรงนี้\n\nถ้าต้องการขึ้นย่อหน้าใหม่ ให้ใช้ \\n\\n ใน JSON แทนการกด Enter จริง\n\nสามารถใส่ได้หลายย่อหน้าตามต้องการ",
+      "link": ""
+    },
+    {
+      "id": "2026-09-01",
+      "date": "2026-09-01",
+      "headline": "ตัวอย่าง Previous ESP News",
+      "image": "assets/content/ESP-News-01-09-26.jpg",
+      "description": "ใส่เนื้อหาของข่าวเก่าตรงนี้",
+      "link": ""
+    }
+  ]
+}
