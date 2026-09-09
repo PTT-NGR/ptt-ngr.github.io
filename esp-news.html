@@ -1,646 +1,576 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PTT NGR | ESP News</title>
-
-  <style>
-    @font-face {
-      font-family: "PTT45";
-      src: url("assets/PTT45Pride-Regular.otf") format("opentype");
-      font-weight: 400;
-    }
-    @font-face {
-      font-family: "PTT45";
-      src: url("assets/PTT45Pride-Bold.otf") format("opentype");
-      font-weight: 700;
-    }
-
-    :root {
-      --navy: #2f3567;
-      --navy-dark: #292c5a;
-      --blue: #3785a8;
-      --line: #d7dbe2;
-      --text: #263445;
-      --muted: #667486;
-      --page: #f7f8fa;
-      --white: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: var(--page);
-      color: var(--text);
-      font-family: "PTT45", Arial, sans-serif;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-    .site-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .top-header {
-      min-height: 145px;
-      padding: 22px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand-left img {
-      width: 175px;
-      max-width: 100%;
-      display: block;
-      object-fit: contain;
-    }
-
-    .brand-right {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      margin-left: auto;
-    }
-
-    .brand-anniversary {
-      width: 165px;
-      max-height: 95px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .portal-title {
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .portal-title strong {
-      display: block;
-      color: var(--navy);
-      font-size: clamp(30px, 3vw, 50px);
-      line-height: 1;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-    }
-
-    .portal-title span {
-      display: block;
-      margin-top: 10px;
-      color: #3c4858;
-      font-size: 16px;
-    }
-
-    /* =========================
-       NAV
-    ========================= */
-    .main-nav {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      border-top: 1px solid var(--line);
-    }
-
-    .main-nav a {
-      min-height: 68px;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-right: 1px solid var(--line);
-      color: var(--navy);
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-align: center;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    .main-nav a:last-child {
-      border-right: 0;
-    }
-
-    .main-nav a:hover,
-    .main-nav a.active {
-      background: #3a3975;
-      color: white;
-    }
-
-    /* =========================
-       PAGE
-    ========================= */
-    .page {
-      width: min(1280px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 54px 0 90px;
-    }
-
-    .eyebrow {
-      margin: 0 0 7px;
-      color: var(--blue);
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .page-title {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(34px, 4vw, 54px);
-      line-height: 1.1;
-      font-weight: 700;
-    }
-
-    .page-intro {
-      max-width: 900px;
-      margin: 14px 0 0;
-      color: #435264;
-      font-size: 19px;
-      line-height: 1.55;
-    }
-
-    /* =========================
-       CONTENT SECTIONS
-    ========================= */
-    .content-section {
-      margin-top: 54px;
-    }
-
-    .section-heading {
-      margin-bottom: 22px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(28px, 3vw, 40px);
-      line-height: 1.15;
-    }
-
-    .section-heading p {
-      max-width: 950px;
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    /* About */
-    .about-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      padding: 34px 38px;
-    }
-
-    .about-card p {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.75;
-      color: #394757;
-    }
-
-    .about-card p + p {
-      margin-top: 18px;
-    }
-
-    .more-info {
-      margin-top: 24px;
-      font-size: 17px;
-      line-height: 1.6;
-    }
-
-    .more-info a {
-      color: var(--blue);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .more-info a:hover {
-      text-decoration: underline;
-    }
-
-
-    /* About our Business: text and map inside the same white card */
-    .about-card-with-map {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 300px;
-      gap: 32px;
-      align-items: stretch;
-    }
-
-    .about-text {
-      min-width: 0;
-    }
-
-    .about-map {
-      appearance: none;
-      font: inherit;
-      color: inherit;
-      text-align: left;
-      width: 300px;
-      align-self: start;
-      justify-self: end;
-      margin: 0;
-      border: 1px solid var(--line);
-      background: var(--white);
-      padding: 8px;
-      cursor: zoom-in;
-    }
-
-    .about-map img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
-
-    /* Value-chain images: always stay inside the white content card */
-    .process-stack {
-      width: 100%;
-      margin: 18px 0 34px;
-    }
-
-    .process-card {
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: var(--white);
-      padding: 10px;
-    }
-
-    .process-card img {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      margin: 0 auto;
-      object-fit: contain;
-    }
-
-    /* Click-to-enlarge image viewer */
-    .image-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      background: rgba(10, 15, 30, 0.82);
-      cursor: zoom-out;
-    }
-
-    .image-modal.is-open {
-      display: flex;
-    }
-
-    .image-modal img {
-      display: block;
-      max-width: 100vw;
-      max-height: 100vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      background: #fff;
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
-      cursor: default;
-    }
-
-    .image-modal .close-button {
-      position: fixed;
-      top: 18px;
-      right: 22px;
-      width: 42px;
-      height: 42px;
-      border: 0;
-      border-radius: 50%;
-      background: #fff;
-      color: var(--navy);
-      font-size: 28px;
-      line-height: 42px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 900px) {
-      .top-header {
-        min-height: auto;
-        padding: 20px 24px;
-      }
-
-      .brand-left img {
-        width: 145px;
-      }
-
-      .brand-anniversary {
-        width: 120px;
-      }
-
-      .portal-title span {
-        font-size: 15px;
-      }
-
-      .page {
-        width: min(100% - 36px, 1280px);
-        padding-top: 42px;
-      }
-
-      .about-card {
-        padding: 28px;
-      }
-
-      .about-card p {
-        font-size: 17px;
-      }
-
-      .process-card,
-      .map-card {
-        padding: 12px;
-      }
-
-      .about-map {
-        width: min(260px, 40%);
-        align-self: start;
-        justify-self: end;
-      }
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-    @media (max-width: 640px) {
-      .top-header {
-        padding: 16px;
-        gap: 14px;
-      }
-
-      .brand-left img {
-        width: 100px;
-      }
-
-      .brand-right {
-        gap: 10px;
-      }
-
-      .brand-anniversary {
-        width: 70px;
-      }
-
-      .portal-title strong {
-        font-size: 22px;
-        letter-spacing: 0.05em;
-      }
-
-      .portal-title span {
-        margin-top: 5px;
-        font-size: 10px;
-      }
-
-      .main-nav {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .main-nav a {
-        min-height: 52px;
-        padding: 8px 10px;
-        border-bottom: 1px solid var(--line);
-        font-size: 13px;
-        letter-spacing: 0.03em;
-      }
-
-      .main-nav a:nth-child(2) {
-        border-right: 0;
-      }
-
-      .page {
-        width: calc(100% - 28px);
-        padding: 34px 0 60px;
-      }
-
-      .eyebrow {
-        font-size: 12px;
-      }
-
-      .page-title {
-        font-size: 32px;
-      }
-
-      .page-intro {
-        margin-top: 10px;
-        font-size: 15px;
-        line-height: 1.55;
-      }
-
-      .content-section {
-        margin-top: 38px;
-      }
-
-      .section-heading {
-        margin-bottom: 16px;
-      }
-
-      .section-heading h2 {
-        font-size: 26px;
-      }
-
-      .section-heading p {
-        margin-top: 7px;
-        font-size: 15px;
-      }
-
-      .about-card {
-        padding: 22px 18px;
-      }
-
-      .about-card p {
-        font-size: 15px;
-        line-height: 1.65;
-      }
-
-      .about-map {
-        width: min(100%, 220px);
-        margin: 20px auto 0;
-        padding: 6px;
-      }
-
-      .process-stack {
-        gap: 18px;
-      }
-
-      .process-card,
-      .map-card {
-        padding: 6px;
-      }
-
-      .image-note {
-        font-size: 12px;
-      }
-
-      .more-info {
-        margin-top: 18px;
-        font-size: 15px;
-      }
-
-      .image-modal {
-        padding: 14px;
-      }
-
-      .image-modal .close-button {
-        top: 10px;
-        right: 10px;
-        width: 38px;
-        height: 38px;
-        font-size: 25px;
-        line-height: 38px;
-      }
-
-      .process-card {
-        padding: 6px;
-      }
-    }
-  
-    @media (max-width: 900px) {
-      .about-card-with-map {
-        grid-template-columns: minmax(0, 1fr) 180px;
-        gap: 22px;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .about-card-with-map {
-        grid-template-columns: 1fr;
-      }
-
-      .about-map {
-        width: min(100%, 220px);
-        justify-self: center;
-        margin-top: 8px;
-      }
-    }
-
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESP News — PTT NGR</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ===== CONTENT LAYOUT ===== */
+.page-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 2.25fr) minmax(300px, .75fr);
+  gap:32px;
+  align-items:start;
+  margin-top:28px;
+}
+
+.latest-content{
+  min-width:0;
+}
+
+.latest-card{
+  border:1px solid #d8dce5;
+  background:#fff;
+  padding:18px;
+  display:grid;
+  grid-template-columns:minmax(280px, 42%) minmax(0, 1fr);
+  gap:30px;
+  align-items:start;
+}
+
+.latest-image{
+  width:100%;
+  overflow:hidden;
+  background:#eef1f5;
+  align-self:start;
+}
+
+.latest-image img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  display:block;
+}
+
+/* Image-only content: keep the portrait image centered and flush to the top. */
+.latest-card.image-only{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:18px;
+}
+
+.latest-card.image-only .latest-image{
+  width:min(100%, 620px);
+  margin:0 auto;
+}
+
+.latest-copy{
+  min-width:0;
+  font-size:.94rem;
+}
+
+.latest-copy time,
+.previous-copy time{
+  display:block;
+  color:#2f6f9f;
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  margin-bottom:8px;
+}
+
+.latest-copy h3{
+  margin:0 0 12px;
+  font-size:clamp(1.45rem, 2vw, 2.05rem);
+  line-height:1.18;
+}
+
+.content-paragraphs p{
+  margin:0 0 14px;
+  line-height:1.68;
+  font-size:.94rem;
+  color:#344054;
+}
+
+.content-paragraphs p:last-child{
+  margin-bottom:18px;
+}
+
+.read-more{
+  display:inline-block;
+  padding:10px 16px;
+  border:1px solid #30386b;
+  color:#30386b;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.06em;
+  font-size:.72rem;
+}
+
+.read-more:hover{
+  background:#30386b;
+  color:#fff;
+}
+
+.previous-sidebar{
+  border:1px solid #d8dce5;
+  background:#fff;
+  padding:20px;
+}
+
+.previous-sidebar h3{
+  margin:0 0 10px;
+  padding-bottom:9px;
+  border-bottom:1px solid #30386b;
+  font-size:1rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.previous-list{
+  display:flex;
+  flex-direction:column;
+}
+
+.previous-item{
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid #e3e6ec;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+  background:none;
+  border-left:0;
+  border-right:0;
+  border-top:0;
+  width:100%;
+  text-align:left;
+  font:inherit;
+}
+
+.previous-item:first-child{
+  padding-top:8px;
+}
+
+.previous-item img{
+  width:92px;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+  background:#eef1f5;
+}
+
+.previous-copy{
+  min-width:0;
+}
+
+.previous-copy span{
+  display:block;
+  font-size:.84rem;
+  line-height:1.38;
+  font-weight:600;
+  color:#344054;
+}
+
+.previous-item b{
+  font-size:1.5rem;
+  line-height:1;
+  font-weight:400;
+  color:#6f7484;
+}
+
+.previous-item:hover .previous-copy span{
+  color:#2f6f9f;
+}
+
+.empty-state{
+  border:1px dashed #c9ced8;
+  padding:24px;
+  color:#6f7484;
+  background:#fff;
+  font-size:.92rem;
+}
+
+.loading{
+  color:#6f7484;
+  font-size:.92rem;
+}
+
+/* Tablet */
+@media(max-width:1050px){
+  .page-grid{
+    grid-template-columns:minmax(0, 1.75fr) minmax(280px, .85fr);
+    gap:24px;
+  }
+
+  .latest-card{
+    grid-template-columns:minmax(230px, 42%) minmax(0, 1fr);
+    gap:22px;
+    padding:16px;
+  }
+
+  .latest-copy h3{
+    font-size:1.7rem;
+  }
+
+  .content-paragraphs p{
+    font-size:.91rem;
+  }
+}
+
+/* Small tablet */
+@media(max-width:820px){
+  .page-grid{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .previous-sidebar{
+    order:2;
+  }
+
+  .previous-list{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    column-gap:20px;
+  }
+
+  .previous-item{
+    grid-template-columns:78px minmax(0, 1fr) auto;
+  }
+
+  .previous-item img{
+    width:78px;
+  }
+}
+
+/* Mobile */
+@media(max-width:620px){
+  .page-grid{
+    margin-top:22px;
+  }
+
+  .latest-card{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:14px;
+  }
+
+  .latest-image{
+    width:min(100%, 430px);
+    margin:0 auto;
+  }
+
+  .latest-copy{
+    font-size:.9rem;
+  }
+
+  .latest-copy time{
+    font-size:.73rem;
+    margin-bottom:6px;
+  }
+
+  .latest-copy h3{
+    font-size:1.5rem;
+    margin-bottom:10px;
+  }
+
+  .content-paragraphs p{
+    font-size:.9rem;
+    line-height:1.65;
+    margin-bottom:13px;
+  }
+
+  .previous-sidebar{
+    padding:16px;
+  }
+
+  .previous-list{
+    display:flex;
+  }
+
+  .previous-item{
+    grid-template-columns:76px minmax(0,1fr) auto;
+    gap:10px;
+    padding:10px 0;
+  }
+
+  .previous-item img{
+    width:76px;
+  }
+
+  .previous-copy time{
+    font-size:.7rem;
+    margin-bottom:4px;
+  }
+
+  .previous-copy span{
+    font-size:.82rem;
+  }
+
+  .previous-item b{
+    font-size:1.3rem;
+  }
+
+  .read-more{
+    padding:9px 13px;
+    font-size:.68rem;
+  }
+}
+
+@media(max-width:380px){
+  .latest-card{
+    padding:10px;
+  }
+
+  .latest-copy h3{
+    font-size:1.35rem;
+  }
+
+  .content-paragraphs p{
+    font-size:.86rem;
+  }
+}
+
+</style>
 </head>
-
 <body>
+<header>
+  <a href="index.html" aria-label="PTT NGR Main">
+    <img class="logo" src="assets/PTT NGR color_0.png" alt="PTT NGR logo">
+  </a>
 
-  <header class="site-header">
-    <div class="top-header">
-
-      <!-- LEFT LOGO -->
-      <div class="brand-left">
-        <img src="assets/PTT NGR color_0.png" alt="PTT NGR">
-      </div>
-
-      <!-- RIGHT LOGOS + PORTAL NAME -->
-      <div class="brand-right">
-        <img class="brand-anniversary" src="assets/PTT_40_years.png" alt="PTT NGR 40 Years">
-
-        <div class="portal-title">
-          <strong>PTT NGR</strong>
-        </div>
-      </div>
-
+  <div class="header-right">
+    <img class="anniversary-logo" src="assets/PTT_40_years.png" alt="PTT 40 years NGR Natural Gas Retail">
+    <div class="brand">
+      <h1>PTT NGR</h1>
     </div>
+  </div>
+</header>
 
-    <nav class="main-nav">
-      <a href="index.html">MAIN</a>
-      <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
-      <a href="godji-content.html">GODJI CONTENT</a>
-      <a class="active" href="esp-news.html">ESP NEWS</a>
-      <a href="other-news.html">OTHER NEWS</a>
-    </nav>
-  </header>
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html">MAIN</a>
+  <a href="global-energy-prices.html" class="active">GLOBAL ENERGY PRICES</a>
+  <a href="godji-content.html">GODJI CONTENT</a>
+  <a href="esp-news.html">ESP NEWS</a>
+  <a href="other-news.html">OTHER NEWS</a>
+</nav>
 
+<main>
+  <h2>Global Energy Prices</h2>
 
-  <main class="page">
-
-    <p class="eyebrow">SECTION</p>
-    <h1 class="page-title">ESP News</h1>
-    <p class="page-intro">
-      A dedicated page for Energy Solutions Provider news, updates and information.
-    </p>
-
-    <section class="content-section">
-      <div class="section-heading">
-        <h2>ESP NEWS</h2>
-        <p>Latest Energy Solutions Provider news and updates.</p>
-      </div>
-
-      <div class="about-card">
-        <p>
-          Content for ESP News can be added here. The page is ready for text,
-          images and future Previous Content / archive items.
-        </p>
-      </div>
+  <div class="page-grid">
+    <section class="latest-content" aria-label="Latest content">
+      <div id="latest-content" class="loading">Loading content…</div>
     </section>
 
-  </main>
-
-
-  <footer>
-    © PTT Natural Gas Retail. All rights reserved.
-  </footer>
-
-
-  <!-- Full-size image viewer -->
-  <div class="image-modal" id="imageModal" aria-hidden="true">
-    <button class="close-button" type="button" aria-label="Close image viewer">×</button>
-    <img id="imageModalImg" src="" alt="">
+    <aside class="previous-sidebar" aria-label="Previous Content">
+      <h3>Previous Content</h3>
+      <div id="previous-content" class="previous-list loading">Loading content…</div>
+    </aside>
   </div>
+</main>
 
-  <script>
-    (function () {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('imageModalImg');
-      const closeButton = modal.querySelector('.close-button');
-      const mapButton = document.querySelector('.about-map');
+<script>
+const DATA_FILE = "assets/content/global-energy-prices.json";
+let allItems = [];
 
-      function openModal(src, alt) {
-        modalImg.src = src;
-        modalImg.alt = alt || '';
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
+function safeText(value) {
+  return value == null ? "" : String(value);
+}
 
-      function closeModal() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
+function getParagraphs(item) {
+  if (Array.isArray(item.paragraphs)) {
+    return item.paragraphs
+      .map(p => safeText(p).trim())
+      .filter(Boolean);
+  }
 
-      if (mapButton) {
-        mapButton.addEventListener('click', function () {
-          const img = mapButton.querySelector('img');
-          openModal(img.src, img.alt);
-        });
-      }
+  return safeText(item.description)
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean);
+}
 
-      closeButton.addEventListener('click', closeModal);
+function renderLatest(item) {
+  const container = document.getElementById('latest-content');
 
-      modal.addEventListener('click', function (event) {
-        if (event.target === modal) closeModal();
+  if (!item) {
+    container.innerHTML = '<div class="empty-state">No content has been added yet.</div>';
+    return;
+  }
+
+  const headline = safeText(item.headline).trim();
+  const date = safeText(item.date).trim();
+  const image = safeText(item.image).trim();
+  const link = safeText(item.link).trim();
+  const paragraphs = getParagraphs(item);
+
+  const hasText = Boolean(headline || date || paragraphs.length || link);
+  const card = document.createElement('article');
+  card.className = 'latest-card' + (hasText ? '' : ' image-only');
+
+  if (image) {
+    const imageWrap = document.createElement('div');
+    imageWrap.className = 'latest-image';
+
+    const img = document.createElement('img');
+    img.src = image;
+    img.alt = headline || 'Content image';
+    img.loading = 'eager';
+
+    imageWrap.appendChild(img);
+    card.appendChild(imageWrap);
+  }
+
+  if (hasText) {
+    const copy = document.createElement('div');
+    copy.className = 'latest-copy';
+
+    if (date) {
+      const time = document.createElement('time');
+      time.dateTime = date;
+      time.textContent = date;
+      copy.appendChild(time);
+    }
+
+    if (headline) {
+      const h3 = document.createElement('h3');
+      h3.textContent = headline;
+      copy.appendChild(h3);
+    }
+
+    if (paragraphs.length) {
+      const paragraphsContainer = document.createElement('div');
+      paragraphsContainer.className = 'content-paragraphs';
+
+      paragraphs.forEach(paragraph => {
+        const p = document.createElement('p');
+        p.textContent = paragraph;
+        paragraphsContainer.appendChild(p);
       });
 
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-          closeModal();
-        }
-      });
-    })();
-  </script>
+      copy.appendChild(paragraphsContainer);
+    }
 
+    if (link) {
+      const button = document.createElement('a');
+      button.className = 'read-more';
+      button.href = link;
+      button.textContent = 'READ MORE →';
+
+      if (/^https?:\/\//i.test(link)) {
+        button.target = '_blank';
+        button.rel = 'noopener noreferrer';
+      }
+
+      copy.appendChild(button);
+    }
+
+    card.appendChild(copy);
+  }
+
+  container.innerHTML = '';
+  container.appendChild(card);
+}
+
+function renderPrevious(items) {
+  const container = document.getElementById('previous-content');
+  container.innerHTML = '';
+
+  if (!items.length) {
+    container.innerHTML = '<div class="empty-state">No previous content yet.</div>';
+    return;
+  }
+
+  items.forEach(item => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'previous-item';
+
+    const image = safeText(item.image).trim();
+    const date = safeText(item.date).trim();
+    const headline = safeText(item.headline).trim();
+
+    if (image) {
+      const img = document.createElement('img');
+      img.src = image;
+      img.alt = '';
+      img.loading = 'lazy';
+      button.appendChild(img);
+    } else {
+      const placeholder = document.createElement('div');
+      placeholder.style.width = '92px';
+      placeholder.style.aspectRatio = '1/1';
+      placeholder.style.background = '#eef1f5';
+      button.appendChild(placeholder);
+    }
+
+    const copy = document.createElement('div');
+    copy.className = 'previous-copy';
+
+    if (date) {
+      const time = document.createElement('time');
+      time.dateTime = date;
+      time.textContent = date;
+      copy.appendChild(time);
+    }
+
+    const title = document.createElement('span');
+    title.textContent = headline || 'Untitled content';
+    copy.appendChild(title);
+
+    const arrow = document.createElement('b');
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = '›';
+
+    button.appendChild(copy);
+    button.appendChild(arrow);
+
+    button.addEventListener('click', () => {
+      const currentId = item.id || item.date;
+      window.location.hash = encodeURIComponent(currentId);
+      renderLatest(item);
+      renderPrevious(allItems.filter(other => (other.id || other.date) !== currentId));
+      document.getElementById('latest-content').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+
+    container.appendChild(button);
+  });
+}
+
+async function loadContent() {
+  try {
+    const response = await fetch(DATA_FILE + '?v=' + Date.now());
+
+    if (!response.ok) {
+      throw new Error('Could not load ' + DATA_FILE);
+    }
+
+    const data = await response.json();
+    allItems = Array.isArray(data.items) ? data.items : [];
+
+    const hash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+    const selected = hash
+      ? allItems.find(item => item.id === hash || item.date === hash)
+      : allItems[0];
+
+    const current = selected || allItems[0];
+    renderLatest(current);
+
+    const currentId = current ? (current.id || current.date) : '';
+    renderPrevious(
+      allItems.filter(item => (item.id || item.date) !== currentId)
+    );
+  } catch (error) {
+    document.getElementById('latest-content').innerHTML =
+      '<div class="empty-state">Content could not be loaded. Please check the JSON file path.</div>';
+    document.getElementById('previous-content').innerHTML = '';
+    console.error(error);
+  }
+}
+
+window.addEventListener('hashchange', loadContent);
+loadContent();
+</script>
 </body>
 </html>
