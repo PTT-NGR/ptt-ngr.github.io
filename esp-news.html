@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ESP News — PTT NGR</title>
-
-  <style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESP News — PTT NGR</title>
+<link rel="stylesheet" href="style.css">
+<style>
 
 /* ===== CONTENT LAYOUT ===== */
 .page-grid{
@@ -330,61 +330,42 @@
 
 </style>
 </head>
-
 <body>
+<header>
+  <a href="index.html" aria-label="PTT NGR Main">
+    <img class="logo" src="assets/PTT NGR color_0.png" alt="PTT NGR logo">
+  </a>
 
-  <header class="site-header">
-    <div class="top-header">
-
-      <!-- LEFT LOGO -->
-      <div class="brand-left">
-        <img src="assets/PTT NGR color_0.png" alt="PTT NGR">
-      </div>
-
-      <!-- RIGHT LOGOS + PORTAL NAME -->
-      <div class="brand-right">
-        <img class="brand-anniversary" src="assets/PTT_40_years.png" alt="PTT NGR 40 Years">
-
-        <div class="portal-title">
-          <strong>PTT NGR</strong>
-        </div>
-      </div>
-
+  <div class="header-right">
+    <img class="anniversary-logo" src="assets/PTT_40_years.png" alt="PTT 40 years NGR Natural Gas Retail">
+    <div class="brand">
+      <h1>PTT NGR</h1>
     </div>
+  </div>
+</header>
 
-    <nav class="main-nav">
-      <a href="index.html">MAIN</a>
-      <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
-      <a href="godji-content.html">GODJI CONTENT</a>
-      <a class="active" href="esp-news.html">ESP NEWS</a>
-      <a href="other-news.html">OTHER NEWS</a>
-    </nav>
-  </header>
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html">MAIN</a>
+  <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
+  <a href="godji-content.html">GODJI CONTENT</a>
+  <a href="esp-news.html" class="active">ESP NEWS</a>
+  <a href="other-news.html">OTHER NEWS</a>
+</nav>
 
+<main>
+  <h2>ESP News</h2>
 
-  <main class="page">
-
-    <p class="eyebrow">SECTION</p>
-    <h1 class="page-title">ESP News</h1>
-    <p class="page-intro">
-      A dedicated page for Energy Solutions Provider news, updates and information.
-    </p>
-
-    <section class="content-section">
-      <div class="section-heading">
-        <h2>ESP NEWS</h2>
-        <p>Latest Energy Solutions Provider news and updates.</p>
-      </div>
-
-      <div class="about-card">
-        <p>
-          Content for ESP News can be added here. The page is ready for text,
-          images and future Previous Content / archive items.
-        </p>
-      </div>
+  <div class="page-grid">
+    <section class="latest-content" aria-label="Latest content">
+      <div id="latest-content" class="loading">Loading content…</div>
     </section>
 
-  </main>
+    <aside class="previous-sidebar" aria-label="Previous Content">
+      <h3>Previous Content</h3>
+      <div id="previous-content" class="previous-list loading">Loading content…</div>
+    </aside>
+  </div>
+</main>
 
 <script>
 const DATA_FILE = "assets/content/esp-news.json";
