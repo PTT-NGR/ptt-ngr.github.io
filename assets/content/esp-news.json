@@ -3,18 +3,22 @@
     {
       "id": "2026-09-09",
       "date": "2026-09-09",
-      "headline": "ใส่ Headline ของ ESP News ที่นี่",
+      "headline": "Headline of the Latest News",
       "image": "assets/content/ESP-News-09-09-26.jpg",
-      "description": "ใส่คำบรรยายหรือเนื้อหาของข่าว ESP ตรงนี้\n\nถ้าต้องการขึ้นย่อหน้าใหม่ ให้ใช้ \\n\\n ใน JSON แทนการกด Enter จริง\n\nสามารถใส่ได้หลายย่อหน้าตามต้องการ",
-      "link": ""
+      "link": "",
+      "paragraphs": [
+        "Add a short description or summary of this content here. You can write multiple paragraphs by using \\n in the JSON description."
+      ]
     },
     {
       "id": "2026-09-01",
       "date": "2026-09-01",
-      "headline": "ตัวอย่าง Previous ESP News",
+      "headline": "Previous News Headline",
       "image": "assets/content/ESP-News-01-09-26.jpg",
-      "description": "ใส่เนื้อหาของข่าวเก่าตรงนี้",
-      "link": ""
+      "link": "",
+      "paragraphs": [
+        "Replace this sample with your archived content."
+      ]
     }
   ]
 }
