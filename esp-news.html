@@ -6,6 +6,58 @@
 <title>ESP News — PTT NGR</title>
 <link rel="stylesheet" href="style.css">
 <style>
+/* Match index.html: five navigation tabs with equal-width columns */
+.main-nav{
+  display:grid;
+  grid-template-columns:repeat(5, 1fr);
+  border-top:1px solid #d7dbe2;
+}
+
+.main-nav a{
+  min-height:68px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-right:1px solid #d7dbe2;
+  color:#2f3567;
+  text-decoration:none;
+  font-family:"PTT45", Arial, sans-serif;
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-align:center;
+  transition:background .2s ease, color .2s ease;
+}
+
+.main-nav a:last-child{
+  border-right:0;
+}
+
+.main-nav a:hover,
+.main-nav a.active{
+  background:#3a3975;
+  color:#fff;
+}
+
+@media(max-width:640px){
+  .main-nav{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .main-nav a{
+    min-height:52px;
+    padding:8px 10px;
+    font-size:13px;
+    letter-spacing:.03em;
+    border-bottom:1px solid #d7dbe2;
+  }
+
+  .main-nav a:nth-child(2){
+    border-right:0;
+  }
+}
+
 
 /* ===== CONTENT LAYOUT ===== */
 .page-grid{
@@ -344,7 +396,7 @@
   </div>
 </header>
 
-<nav class="nav" aria-label="Main navigation">
+<nav class="main-nav" aria-label="Main navigation">
   <a href="index.html">MAIN</a>
   <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
   <a href="godji-content.html">GODJI CONTENT</a>
