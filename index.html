@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PTT NGR | Main</title>
+  <link rel="stylesheet" href="style.css">
 
   <style>
     @font-face {
@@ -43,68 +44,8 @@
       font-family: "PTT45", Arial, sans-serif;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
-    .site-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--line);
-    }
+    /* Header is intentionally inherited from the shared style.css so it is pixel-consistent with ESP News. */
 
-    .top-header {
-      min-height: 110px;
-      padding: 14px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand-left img {
-      width: 140px;
-      max-width: 100%;
-      display: block;
-      object-fit: contain;
-    }
-
-    .brand-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-left: auto;
-    }
-
-    .brand-anniversary {
-      width: 130px;
-      max-height: 95px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .portal-title {
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .portal-title strong {
-      display: block;
-      color: var(--navy);
-      font-size: 40px;
-      line-height: 1;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-    }
-
-    .portal-title span {
-      display: block;
-      margin-top: 10px;
-      color: #3c4858;
-      font-size: 16px;
-    }
-
-    /* =========================
-       NAV
-    ========================= */
     .main-nav {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -553,34 +494,27 @@
 
 <body>
 
-  <header class="site-header">
-    <div class="top-header">
+  <header>
+    <a href="index.html" aria-label="PTT NGR Main">
+      <img class="logo" src="assets/PTT NGR color_0.png" alt="PTT NGR logo">
+    </a>
 
-      <!-- LEFT LOGO -->
-      <div class="brand-left">
-        <img src="assets/PTT NGR color_0.png" alt="PTT NGR">
+    <div class="header-right">
+      <img class="anniversary-logo" src="assets/PTT_40_years.png" alt="PTT 40 years NGR Natural Gas Retail">
+      <div class="brand">
+        <h1>PTT NGR</h1>
       </div>
-
-      <!-- RIGHT LOGOS + PORTAL NAME -->
-      <div class="brand-right">
-        <img class="brand-anniversary" src="assets/PTT_40_years.png" alt="PTT NGR 40 Years">
-
-        <div class="portal-title">
-          <strong>PTT NGR</strong>
-        </div>
-      </div>
-
     </div>
 
-    <nav class="main-nav">
-      <a class="active" href="index.html">MAIN</a>
-      <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
-      <a href="godji-content.html">GODJI CONTENT</a>
-      <a href="esp-news.html">ESP NEWS</a>
-      <a href="other-news.html">OTHER NEWS</a>
-    </nav>
   </header>
 
+  <nav class="main-nav">
+    <a class="active" href="index.html">MAIN</a>
+    <a href="global-energy-prices.html">GLOBAL ENERGY PRICES</a>
+    <a href="godji-content.html">GODJI CONTENT</a>
+    <a href="esp-news.html">ESP NEWS</a>
+    <a href="other-news.html">OTHER NEWS</a>
+  </nav>
 
   <main class="page">
 
