@@ -1,6 +1,36 @@
 {
   "items": [
     {
+      "id": "2026-10-08",
+      "date": "2026-10-08",
+      "headline": "ราคาพลังงานโลก วันที่ 08 ต.ค. 2569",
+      "image": "assets/content/Energy-08-10-26.png",
+      "link": "",
+      "paragraphs": [
+        ""
+      ]
+    },
+{
+      "id": "2026-09-30",
+      "date": "2026-09-30",
+      "headline": "ราคาพลังงานโลก วันที่ 30 ก.ย. 2569",
+      "image": "assets/content/Energy-30-09-26.png",
+      "link": "",
+      "paragraphs": [
+        ""
+      ]
+    },
+{
+      "id": "2026-09-29",
+      "date": "2026-09-29",
+      "headline": "ราคาพลังงานโลก วันที่ 29 ก.ย. 2569",
+      "image": "assets/content/Energy-29-09-26.png",
+      "link": "",
+      "paragraphs": [
+        ""
+      ]
+    },
+{
       "id": "2026-09-07",
       "date": "2026-09-07",
       "headline": "ราคาพลังงานโลก วันที่ 7 ก.ย. 2569",
